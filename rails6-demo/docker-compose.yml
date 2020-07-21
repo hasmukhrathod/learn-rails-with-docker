@@ -6,4 +6,6 @@ services :
       - 3000:3000
     ##make changes in the local & it will reflect to the container.
     volumes:
-      - ./usr/src/app
+      - .:/usr/src/app
+  redis:
+    image: redis
