@@ -7,5 +7,16 @@ services :
     ##make changes in the local & it will reflect to the container.
     volumes:
       - .:/usr/src/app
+    env_file:
+      - .env/development/database
+      - .env/development/web
   redis:
     image: redis
+  db:
+    image: postgres
+    env_file:
+      - .env/development/database
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
