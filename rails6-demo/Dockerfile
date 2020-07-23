@@ -9,10 +9,18 @@ WORKDIR /usr/src/app
 ADD Gemfile  /usr/src/app/Gemfile 
 ADD Gemfile.lock  /usr/src/app/Gemfile.lock
 
+##install gems in the following directory
+ENV BUNDLE_PATH /gems
+
 ##to solve error of yarn
 RUN bundle config --delete without
 RUN bundle config --delete with
 RUN bundle install
+
+# Add a script to be executed every time the container starts.
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

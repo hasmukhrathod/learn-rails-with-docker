@@ -7,6 +7,7 @@ services :
     ##make changes in the local & it will reflect to the container.
     volumes:
       - .:/usr/src/app
+      - gem_cache:/gems
     env_file:
       - .env/development/database
       - .env/development/web
@@ -20,3 +21,4 @@ services :
       - db_data:/var/lib/postgresql/data
 volumes:
   db_data:
+  gem_cache:
